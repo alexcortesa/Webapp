@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col">
+        <h4>Nuevo Contacto</h4>
+    </div>
+    <div class="col">
+        <button type="button" class="btn btn-info" (click)="returnContacts()">Regresar</button>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-8">
+        <div class="alert alert-danger" role="alert" *ngIf="invalidUser">
+            {{ messageError }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-10">
+        <form #formContact="ngForm" (ngSubmit)="createContact(formContact)">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Nombre</label>
+                <div class="col-sm-10">
+                    <input type="text" name="FisrtName" class="form-control" required [(ngModel)]="contact.FirstName">
+                </div>
+                <span *ngIf="formContact.submitted && formContact.controls['FisrtName'].errors" class="text-danger">El nombre es obligatorio</span>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Apellido</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="LastName" [(ngModel)]="contact.LastName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Telefono Movil</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" required name="Movil" maxlength="10" [(ngModel)]="contact.PhoneMovil">
+                </div>
+                <span *ngIf="formContact.submitted && formContact.controls['Movil'].errors" class="text-danger">El movil es obligatorio</span>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Telefono</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" name="PhoneNumber" maxlength="10" [(ngModel)]="contact.PhoneNumber">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" email class="form-control" [(ngModel)]="contact.Email" name="Email">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <button class="btn btn-success btn-block" type="submit">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
